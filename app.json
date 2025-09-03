@@ -1,29 +1,23 @@
 {
   "expo": {
-    "name": "steps-app",
+    "name": "Steps",
     "slug": "steps-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    "scheme": "steps",
+    "plugins": [
+      "expo-router"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "infoPlist": {
+        "UIStatusBarStyle": "UIStatusBarStyleDarkContent"
+      },
+      "bundleIdentifier": "com.sugaroro.stepsapp"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "package": "com.sugaroro.stepsapp"
     }
   }
 }
