@@ -1,9 +1,12 @@
-import { View, Text, StyleSheet, StatusBar, Animated } from "react-native";
+import { View, Text, StyleSheet, StatusBar, Animated, SafeAreaView } from "react-native";
 import { useEffect, useRef } from "react";
+import { useRouter } from "expo-router";
 import LottieView from 'lottie-react-native';
-import { colors, spacing, borderRadius } from './theme';
+import { colors, spacing, borderRadius, fonts } from './theme';
+import Button from '../components/Button';
 
 export default function Welcome() {
+  const router = useRouter();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
   const dogFadeAnim = useRef(new Animated.Value(0)).current;
@@ -29,11 +32,11 @@ export default function Welcome() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       
-      {/* Running Dog Background */}
-      <View style={styles.backgroundContainer}>
+      {/* Dog Animation - Absolutely positioned background */}
+      <View style={styles.dogBackground}>
         <Animated.View style={{ opacity: dogFadeAnim }}>
           <LottieView
             source={require('../assets/animations/dog-run.json')}
@@ -44,47 +47,53 @@ export default function Welcome() {
         </Animated.View>
       </View>
       
+      {/* Main Content Container */}
       <Animated.View 
         style={[
-          styles.content,
+          styles.mainContent,
           {
             opacity: fadeAnim,
             transform: [{ translateY: slideAnim }]
           }
         ]}
       >
-        <Text style={styles.title}>Welcome to [Name]</Text>
-        <Text style={styles.subtitle}>Every Step Counts.</Text>
+        {/* Top Section - Title and Stats */}
+        <View style={styles.topSection}>
+          <Text style={styles.title}>Welcome to [Name]</Text>
+          <Text style={styles.subtitle}>Every Step Counts.</Text>
+          
+          <View style={styles.statsContainer}>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>2.4M*+</Text>
+              <Text style={styles.statLabel}>Steps Today</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>156*</Text>
+              <Text style={styles.statLabel}>Active Battles</Text>
+            </View>
+          </View>
+        </View>
         
-        {/* Simple Stats to Draw Users In */}
-        <View style={styles.statsContainer}>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>2.4M*+</Text>
-            <Text style={styles.statLabel}>Steps Today</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>156*</Text>
-            <Text style={styles.statLabel}>Active Battles</Text>
-          </View>
+        {/* Bottom Section - Buttons */}
+        <View style={{alignItems: 'center'}}>
+          <Button
+            title="Get Started"
+            backgroundColor={colors.button.primary}
+            width="90%"
+            height={56}
+            onPress={() => router.push('/home')}
+          />
+          <View style={styles.buttonSpacing} />
+          <Button
+            title="Learn More"
+            backgroundColor={colors.button.secondary}
+            width="90%"
+            height={56}
+            onPress={() => console.log('Learn More pressed')}
+          />
         </View>
       </Animated.View>
-      
-      {/* CTA Button at Bottom */}
-      <Animated.View 
-        style={[
-          styles.bottomCtaContainer,
-          {
-            opacity: fadeAnim,
-            transform: [{ translateY: slideAnim }]
-          }
-        ]}
-      >
-        <View style={styles.ctaButton}>
-          <Text style={styles.ctaEmoji}>🏃‍♂️</Text>
-          <Text style={styles.ctaText}>Get Started</Text>
-        </View>
-      </Animated.View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -92,46 +101,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  backgroundContainer: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  runningDog: {
-    width: 400,
-    height: 400,
-    opacity: colors.opacity.heavy,
-  },
-  content: {
-    alignItems: 'center',
-    paddingHorizontal: spacing.lg,
-    position: 'absolute',
-    top: '15%',
+  mainContent: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingVertical: spacing.xl,
+    paddingHorizontal: spacing.md,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontSize: fonts.size.xxxl,
+    fontFamily: fonts.heading.primary,
     color: colors.text.primary,
     marginBottom: spacing.md,
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: fonts.size.lg,
+    fontFamily: fonts.heading.secondary,
     color: colors.text.secondary,
     textAlign: 'center',
-    marginBottom: spacing.lg,
+    marginBottom: spacing.sm,
   },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
     maxWidth: 280,
-    marginBottom: spacing.lg,
+    marginBottom: spacing.sm,
   },
   statItem: {
     alignItems: 'center',
@@ -148,34 +144,34 @@ const styles = StyleSheet.create({
     color: colors.text.light,
     textAlign: 'center',
   },
+  runningDog: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 1, // keeps it square
+    opacity: colors.opacity.heavy,
+  },
   bottomCtaContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  buttonSpacing: {
+    height: spacing.md,
+  },
+  dogBackground: {
     position: 'absolute',
-    bottom: spacing.xl,
+    top: 0,
     left: 0,
     right: 0,
+    bottom: 0,
+    zIndex: -1, // Ensure it's behind other content
+    backgroundColor: colors.background.primary, // Or any other background color
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  ctaButton: {
-    backgroundColor: colors.button.primary, 
-    borderRadius: borderRadius.md,
-    padding: spacing.md,
+  topSection: {
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 4,
-    width: '90%',
-    maxWidth: 400,
+    marginBottom: spacing.sm,
   },
-  ctaEmoji: {
-    fontSize: 24,
-    marginBottom: spacing.xs,
-  },
-  ctaText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'white',
-    textAlign: 'center',
-  },
+
+
 });

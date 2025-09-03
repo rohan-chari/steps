@@ -4,7 +4,8 @@
     "slug": "steps-app",
     "scheme": "steps",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ],
     "ios": {
       "supportsTablet": false,

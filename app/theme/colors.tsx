@@ -2,19 +2,15 @@
 export const colors = {
   // Background colors
   background: {
-    primary: '#F5F1EA', // Beige background
-    secondary: '#F9FAFB', // Light gray
+    primary: '#F9FAFB', // Beige background
+    secondary: '#B93C66', // Light gray
     card: '#FFFFFF', // White cards
   },
 
-  button: {
-    primary: '#3cb98fff',
-  },
-  
   // Text colors
   text: {
-    primary: '#2D3748', // Dark gray
-    secondary: '#4A5568', // Medium gray
+    primary: '#3cb98fff', // Dark gray
+    secondary: '#B93C66', // Medium gray
     light: '#6B7280', // Light gray
   },
   
@@ -30,6 +26,13 @@ export const colors = {
     success: '#10B981', // Green
     warning: '#F59E0B', // Yellow
     error: '#EF4444', // Red
+  },
+  
+  // Button colors
+  button: {
+    primary: '#3cb98fff', // Soft green (the one you liked)
+    secondary: '#B93C66', // red
+    tertiary: '#8B5CF6', // Purple
   },
   
   // Opacity levels
@@ -55,4 +58,37 @@ export const borderRadius = {
   lg: 24,
   xl: 32,
   full: 999,
+};
+
+export const fonts = {
+  // Rubik as primary font everywhere
+  heading: {
+    primary: 'Rubik_500Medium', // Medium for main titles (lighter)
+    secondary: 'Rubik_400Regular', // Regular for subtitles (lighter)
+    tertiary: 'Rubik_500Medium', // Medium for special elements
+  },
+  
+  // Body text using Rubik
+  body: {
+    primary: 'Rubik_400Regular', // Regular for body text
+    secondary: 'Rubik_400Regular', // Regular for emphasis
+    tertiary: 'Rubik_500Medium', // Medium for important text
+  },
+  
+  // Buttons using Rubik
+  button: {
+    primary: 'Rubik_400Regular', // Regular for button text (lighter)
+    secondary: 'Rubik_400Regular', // Regular for secondary buttons
+  },
+  
+  // Font sizes for consistency
+  size: {
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 24,
+    xxl: 32,
+    xxxl: 48,
+  },
 };
