@@ -7,7 +7,7 @@ import {
   Rubik_600SemiBold,
   Rubik_700Bold
 } from "@expo-google-fonts/rubik";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -16,20 +16,10 @@ function LayoutWithInset() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {/* Paint only the status bar inset */}
-      <View
-  style={{
-    height: insets.top,
-    backgroundColor: "#3cb98fff",
-    borderBottomWidth: 7,
-    borderBottomColor: "rgba(0, 0, 0, 0.17)",
-  }}
-/>
-      
-      {/* Main content */}
-      <View style={{ flex: 1, backgroundColor: "#F5F1EA" }}>
-        <StatusBar style="light" backgroundColor="#3cb98f" />
+      <View style={{ flex: 1, backgroundColor: "#F9FAFB" }}>
+        <StatusBar style="dark" />
         <Stack screenOptions={{ headerShown: false }} />
+        
       </View>
     </GestureHandlerRootView>
   );

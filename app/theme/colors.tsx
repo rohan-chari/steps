@@ -2,9 +2,9 @@
 export const colors = {
   // Background colors
   background: {
-    primary: '#F9FAFB', // Beige background
-    secondary: '#B93C66', // Light gray
-    card: '#FFFFFF', // White cards
+    primary: '#f8f0daff', 
+    secondary: '#B93C66', 
+    card: '#FFFFFF', 
   },
 
   // Text colors

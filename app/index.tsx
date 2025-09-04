@@ -33,7 +33,6 @@ export default function Welcome() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       
       {/* Dog Animation - Absolutely positioned background */}
       <View style={styles.dogBackground}>
