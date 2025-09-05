@@ -2,21 +2,31 @@ import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { colors, spacing, fonts } from '../../theme';
 import BottomHomeBar from '../../components/BottomHomeBar';
 
-export default function HomePage() {
+export default function ProfilePage() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Welcome Home</Text>
-        <Text style={styles.subtitle}>Your daily steps journey begins here</Text>
+        <Text style={styles.title}>Profile</Text>
+        <Text style={styles.subtitle}>Manage your account and preferences</Text>
         
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Today's Progress</Text>
-          <Text style={styles.cardText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+          <Text style={styles.cardTitle}>Personal Information</Text>
+          <Text style={styles.cardText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+        </View>
+        
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Settings</Text>
+          <Text style={styles.cardText}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+        </View>
+        
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Privacy</Text>
+          <Text style={styles.cardText}>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</Text>
         </View>
       </View>
       
       {/* Bottom Floating Home Bar */}
-      <BottomHomeBar activePage="home" />
+      <BottomHomeBar activePage="profile" />
     </SafeAreaView>
   );
 }

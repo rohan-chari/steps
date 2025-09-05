@@ -1,13 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-import { colors, spacing, borderRadius, fonts } from '../app/theme';
+import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, DimensionValue } from 'react-native';
+import { colors, spacing, borderRadius, fonts } from '../theme';
 
 interface ButtonProps {
   title: string;
   onPress?: () => void;
   backgroundColor?: string;
   textColor?: string;
-  width?: number | string;
+  width?: DimensionValue;
   height?: number;
   disabled?: boolean;
   style?: ViewStyle;
@@ -31,7 +31,7 @@ export default function Button({
         styles.button,
         {
           backgroundColor: disabled ? colors.text.light : backgroundColor,
-          width: width as any,
+          width,
           height,
         },
         style,

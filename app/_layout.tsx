@@ -18,7 +18,13 @@ function LayoutWithInset() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: "#F9FAFB" }}>
         <StatusBar style="dark" />
-        <Stack screenOptions={{ headerShown: false }} />
+        <Stack 
+          screenOptions={{ 
+            headerShown: false,
+            animation: 'fade',
+            animationDuration: 100,
+          }} 
+        />
         
       </View>
     </GestureHandlerRootView>

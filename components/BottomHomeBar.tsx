@@ -1,49 +1,51 @@
 import React from 'react';
 import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, borderRadius } from '../app/theme';
+import { useRouter } from 'expo-router';
+import { colors, spacing, borderRadius } from '../theme';
 
 interface BottomHomeBarProps {
-  // Add props as needed later
+  activePage?: 'home' | 'profile';
 }
 
-export default function BottomHomeBar({}: BottomHomeBarProps) {
+export default function BottomHomeBar({ activePage = 'home' }: BottomHomeBarProps) {
+  const router = useRouter();
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.bar}>
         <View style={styles.content}>
-          <TouchableOpacity style={styles.navItem}>
+          <TouchableOpacity 
+            style={styles.navItem}
+            onPress={() => router.replace('/home')}
+          >
             <View style={styles.iconContainer}>
-              <View style={styles.activeIconBackground}>
-                <Ionicons name="home" size={28} color={colors.text.primary} />
-              </View>
+              {activePage === 'home' ? (
+                <View style={styles.activeIconBackground}>
+                  <Ionicons name="home" size={28} color={colors.text.primary} />
+                </View>
+              ) : (
+                <Ionicons name="home" size={28} color={colors.background.card} />
+              )}
             </View>
           </TouchableOpacity>
           
           {/* Placeholder for future navigation items */}
-          <View style={styles.navItem}>
-            <View style={styles.iconContainer}>
-              <Ionicons name="flame" size={28} color={colors.text.secondary} />
-            </View>
-          </View>
           
-          <View style={styles.navItem}>
+          <TouchableOpacity 
+            style={styles.navItem}
+            onPress={() => router.replace('/profile')}
+          >
             <View style={styles.iconContainer}>
-              <Ionicons name="heart" size={28} color={colors.text.secondary} />
+              {activePage === 'profile' ? (
+                <View style={styles.activeIconBackground}>
+                  <Ionicons name="person" size={28} color={colors.text.primary} />
+                </View>
+              ) : (
+                <Ionicons name="person" size={28} color={colors.background.card} />
+              )}
             </View>
-          </View>
-          
-          <View style={styles.navItem}>
-            <View style={styles.iconContainer}>
-              <Ionicons name="notifications" size={28} color={colors.text.secondary} />
-            </View>
-          </View>
-          
-          <View style={styles.navItem}>
-            <View style={styles.iconContainer}>
-              <Ionicons name="person" size={28} color={colors.text.primary} />
-            </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -88,19 +90,11 @@ const styles = StyleSheet.create({
   },
   activeIconBackground: {
     backgroundColor: colors.background.primary,
-    borderRadius: 20,
-    width: 40,
-    height: 40,
+    borderRadius: 25,
+    width: 45,
+    height: 45,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.xs,
-  },
-  selectedIndicator: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: colors.accent.primary,
-    position: 'absolute',
-    bottom: -spacing.xs,
   },
 });

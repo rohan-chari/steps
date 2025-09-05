@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, StatusBar, Animated, SafeAreaView } from "react
 import { useEffect, useRef } from "react";
 import { useRouter } from "expo-router";
 import LottieView from 'lottie-react-native';
-import { colors, spacing, borderRadius, fonts } from './theme';
+import { colors, spacing, borderRadius, fonts } from '../theme';
 import Button from '../components/Button';
 
 export default function Welcome() {
@@ -80,7 +80,7 @@ export default function Welcome() {
             backgroundColor={colors.button.primary}
             width="90%"
             height={56}
-            onPress={() => router.push('/home')}
+            onPress={() => router.push('/onboarding')}
           />
           <View style={styles.buttonSpacing} />
           <Button
